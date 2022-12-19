@@ -1,0 +1,13 @@
+.registerForm form {
+  margin: 3% 30% !important;
+}
+
+.registerForm form .row {
+  margin-top: 8%;
+}
+
+.registerForm {
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 100px;
+}

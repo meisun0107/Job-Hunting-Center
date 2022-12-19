@@ -1,0 +1,42 @@
+.loginForm form {
+  margin: 5% 30% !important;
+}
+
+.loginForm form .row {
+  margin-top: 10%;
+}
+
+.loginForm {
+  color: white;
+  margin-top: 30px;
+}
+
+.leftBtn{
+  text-align: left;
+}
+.rightBtn{
+  text-align: right;
+}
+
+.leftBtn button {
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: #6AD2F2 !important;
+  border: transparent !important;
+}
+
+.leftBtn button:hover {
+  background-color: #6ad2f260 !important;
+}
+
+
+.rightBtn button {
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: #04090b !important;
+  border: transparent !important;
+}
+
+.rightBtn button:hover {
+  background-color: #04090b5d !important;
+}

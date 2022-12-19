@@ -1,0 +1,13 @@
+.discover {
+  padding: 2% 10%;
+  text-align: center !important;
+  color: white;
+}
+
+.content {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.content p {
+  margin: 8% 10%;
+}

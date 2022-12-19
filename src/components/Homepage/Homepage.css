@@ -1,0 +1,40 @@
+.homeContainer img {
+  width: 60%;
+  height: auto;
+  border-radius: 3%;
+}
+
+.homeContainer .image {
+  margin-bottom: 100px;
+}
+
+homeContainer .col {
+  padding: 10px;
+}
+
+.paragraph {
+  padding-top: 10%;
+  text-align: left;
+}
+
+.paragraph h1 {
+  color: white;
+  text-align: left;
+}
+
+.paragraph h5 {
+  color: white;
+  margin-left: 27%;
+  margin-top: 20px;
+}
+
+.paragraph .btn-lg {
+  margin-top: 40px;
+  background-color:#6AD2F2 !important;
+  border: #6AD2F2 !important;
+  font-family: Georgia, 'Times New Roman', Times, serif !important;
+}
+
+.paragraph .btn-lg:hover {
+  background-color: #6ad2f260 !important;
+}
