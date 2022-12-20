@@ -1,4 +1,4 @@
-import React, { useState }from "react";
+import React, { useState, useEffect }from "react";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -10,7 +10,25 @@ import './Profile.css'
 import candidate from './candidate.png'
 import axios from "axios";
 
+import { Auth } from 'aws-amplify';
+
 function UserProfile() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        const user = await Auth.currentAuthenticatedUser();
+        setUser(user);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchUser();
+  }, []);
+
+  console.log(user)
 
   const [file, setFile] = useState()
   function handleChange(event) {
@@ -18,7 +36,7 @@ function UserProfile() {
   }
   const uploadResume = (event) => {
     event.preventDefault(); // prevent the form from submitting
-    
+
     console.log(file.name);
     const config = {
       headers: {
@@ -43,6 +61,10 @@ function UserProfile() {
     .catch((err) => alert("match Error"));
   }
 
+  if (!user) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Container fluid className="userContainer">
       <Row>
@@ -51,8 +73,8 @@ function UserProfile() {
         </Col>
         <Col sm={3}>
         <div className="info">
-        <p>Username: Bob</p>
-        <p>Email: Bob123@gmail.com</p>
+        <p>Username: {user.username}</p>
+        <p>Email: {user.attributes.email}</p>
         </div>
         </Col>
         <Col sm={6} className="userBtns">

@@ -27,6 +27,7 @@ function App() {
 
   return (
     <Authenticator formFields={formFields}>
+
       {({ signOut, user }) => (
 
     <div className="App">
