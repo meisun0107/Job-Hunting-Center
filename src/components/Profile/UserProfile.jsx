@@ -43,8 +43,17 @@ function UserProfile() {
         'content-type': 'multipart/form-data',
       },
     };
+    var additionalParams = {
+			headers: {
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Headers": "*",
+				"Access-Control-Allow-Methods": "PUT",
+				"Content-Type": file.type,
+			},
+		};
+
     const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/v1/resumeUpload/resume-of-jrc-cloud-computing/" + file.name;
-    axios.put(url, {"file": file}, config).then((response) => {
+    axios.put(url, {"file": file}, additionalParams, config).then((response) => {
       console.log(response.data);
     });
   };
