@@ -8,8 +8,32 @@ import Table from 'react-bootstrap/Table';
 import './Profile.css'
 import company from './company.png'
 import axios from "axios";
+import { useState, useEffect } from "react";
+
+import { Auth } from "aws-amplify";
 
 function CompanyProfile() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        const user = await Auth.currentAuthenticatedUser();
+        setUser(user);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchUser();
+  }, []);
+
+  console.log(user);
+  if (!user) {
+    return <div>Loading...</div>;
+  }
+  
+
   function sendData(event) {
     event.preventDefault(); // prevent the form from submitting
     const title = event.target.elements.formHorizontalTitle.value;
@@ -21,7 +45,7 @@ function CompanyProfile() {
 				"Content-Type": "multipart/form-data",
 			}, 
       params: {
-        email:"123test@gmail.com", 
+        email:user.attributes.email, 
         position_name: title, 
         position_description: description
       }
@@ -35,6 +59,7 @@ function CompanyProfile() {
         console.log(error);
       });
   }
+
   return (
     <Container fluid className="companyContainer">
       <Row>
@@ -44,7 +69,7 @@ function CompanyProfile() {
         <Col sm={3}>
         <div className="info">
         <p>Company: Job Hunting Center</p>
-        <p>Email: jhc@gmail.com</p>
+        <p>Email: {user.attributes.email}</p>
         </div>
         </Col>
         <Col sm={6} className="userBtns">

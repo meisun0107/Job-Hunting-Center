@@ -22,6 +22,10 @@ function Homepage() {
         <Button href="/user-profile" variant="primary" size="lg">
         View my profile and start matching!
       </Button>
+      <p></p>
+      <Button href="/company-profile" variant="primary" size="lg">
+        Post a job as a company!
+      </Button>
         </div>
         </Col>
       </Row>
