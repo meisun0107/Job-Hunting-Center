@@ -18,19 +18,12 @@ import { Amplify, Auth } from 'aws-amplify';
 import '@aws-amplify/ui-react/styles.css';
 
 function App() {
-  const formFields = {
-    signIn: {
-      username: {
-        labelHidden: false,
-        placeholder: 'Enter your username here',
-        isRequired: true,
-        label: 'Username:'
-      },
-    },
-  }
 
   return (
-    <Authenticator formFields={formFields}>
+    <Authenticator signUpAttributes={[
+      'email',
+      'preferred_username',
+    ]}>
 
       {({ signOut, user }) => (
 
