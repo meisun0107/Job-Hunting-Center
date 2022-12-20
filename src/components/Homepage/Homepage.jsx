@@ -19,8 +19,8 @@ function Homepage() {
           <h1>We can help you!</h1>
           <h1>Find your matching job!</h1>
         <h5>Here is where the dream start</h5>
-        <Button href="/register" variant="primary" size="lg">
-        Join Now
+        <Button href="/user-profile" variant="primary" size="lg">
+        View my profile and start matching!
       </Button>
         </div>
         </Col>
