@@ -10,8 +10,20 @@ import company from './company.png'
 import axios from "axios";
 
 function CompanyProfile() {
+  function sendData(event) {
+    event.preventDefault(); // prevent the form from submitting
+    const title = event.target.elements.formHorizontalTitle.value;
+    const description = event.target.elements.formHorizontalDescription.value;
+    const data = {title, description};
 
-  function sendData(event) {}
+    console.log(data)
+    axios.post("https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/postposition", data).then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   return (
     <Container fluid className="companyContainer">
       <Row>

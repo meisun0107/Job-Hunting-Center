@@ -11,17 +11,26 @@ import candidate from './candidate.png'
 import axios from "axios";
 
 function UserProfile() {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const uploadResume = () => {
-    const formData = new FormData();
-    formData.append("file", selectedFile);
-    
-    axios
-      .post("API-GATEWAY-PATH", formData)
-      .then((res) => {
-        alert("File Upload success");
-      })
-      .catch((err) => alert("File Upload Error"));
+
+  const [file, setFile] = useState()
+
+  function handleChange(event) {
+    setFile(event.target.files[0])
+  }
+
+  const uploadResume = (event) => {
+    event.preventDefault(); // prevent the form from submitting
+
+    console.log(file.name);
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data',
+      },
+    };
+    const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/resumeUpload/resume-of-jrc-cloud-computing/" + file.name;
+    axios.post(url, {"file": file}, config).then((response) => {
+      console.log(response.data);
+    });
   };
 
   const match = (e) => {
@@ -51,8 +60,7 @@ function UserProfile() {
         <Col sm={6} className="userBtns">
         <Form action = "" method="POST" onSubmit={uploadResume}>
           <Form.Group controlId="formFile" className="mb-3">
-          <Form.Control type="file" onFileSelectSuccess={(file) => setSelectedFile(file)}
-          onFileSelectError={({ error }) => alert(error)}/>
+          <Form.Control type="file" onChange={handleChange}/>
           </Form.Group>
           <Button type="submit" variant="primary" size="md" className="uploadBtn">
         Upload Resume
