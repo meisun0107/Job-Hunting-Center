@@ -14,16 +14,21 @@ function CompanyProfile() {
     event.preventDefault(); // prevent the form from submitting
     const title = event.target.elements.formHorizontalTitle.value;
     const description = event.target.elements.formHorizontalDescription.value;
-    const data = {title, description};
+    const data = {"email":"123test@gmail.com", "position_name": title, "position_description": description};
 
     var additionalParams = {
 			headers: {
 				"Content-Type": "multipart/form-data",
-			},
+			}, 
+      params: {
+        email:"123test@gmail.com", 
+        position_name: title, 
+        position_description: description
+      }
 		};
 
     console.log(data.type)
-    axios.post("https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/v1/postposition", data, additionalParams).then((response) => {
+    axios.post("https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/postposition", data, additionalParams).then((response) => {
         console.log(response);
       })
       .catch((error) => {

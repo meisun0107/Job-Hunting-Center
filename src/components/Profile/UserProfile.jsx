@@ -52,11 +52,11 @@ function UserProfile() {
 			},
 		};
 
-    const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/v1/resumeUpload/resume-of-jrc-cloud-computing/" + file.name;
-    /*axios.put(url, file, additionalParams).then((response) => {
+    const puturl = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/resumeUpload/resume-of-jrc-cloud-computing/" + file.name;
+    axios.put(puturl, file, config).then((response) => {
       console.log(response.data);
-    });*/
-
+    });
+/*
 fetch(url, {
   method: 'PUT',
   mode: 'cors',
@@ -76,7 +76,7 @@ fetch(url, {
   })
   .catch(error => {
     console.error(error)
-  })
+  })*/
   };
 
   const match = (e) => {
@@ -94,6 +94,15 @@ fetch(url, {
   if (!user) {
     return <div>Loading...</div>;
   }
+
+  const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/profile";
+  axios.get(url, {
+    params: {
+      email: "123test@gmail.com"
+    }
+  }).then((response) => {
+    console.log(response.data);
+  });
 
   return (
     <Container fluid className="userContainer">
