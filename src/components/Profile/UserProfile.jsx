@@ -53,7 +53,7 @@ function UserProfile() {
 		};
 
     const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/v1/resumeUpload/resume-of-jrc-cloud-computing/" + file.name;
-    axios.put(url, {"file": file}, additionalParams).then((response) => {
+    axios.put(url, file, additionalParams).then((response) => {
       console.log(response.data);
     });
   };
