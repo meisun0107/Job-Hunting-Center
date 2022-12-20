@@ -13,20 +13,16 @@ import QuickMatch from "./components/Match/QuickMatch";
 import MarketAnalysis from "./components/MarketAnalysis/MarketAnalysis";
 import { Routes, Route } from "react-router-dom";
 
-import { Authenticator, withAuthenticator, useAuthenticator, CheckboxField, SignUp} from '@aws-amplify/ui-react';
+import { Authenticator, withAuthenticator} from '@aws-amplify/ui-react';
 import { Amplify, Auth } from 'aws-amplify';
 import '@aws-amplify/ui-react/styles.css';
 
 function App() {
-  const formFields = [
-    { type: 'username', label: 'Username' },
-    { type: 'password', label: 'Password' },
-    { type: 'email', label: 'Email' },
-    { type: 'checkbox', label: 'I am going to sign up as a company.'}
-  ];
 
   return (
-    <Authenticator formFields={formFields}>
+    <Authenticator signUpAttributes={[
+      'name',
+    ]}>
 
       {({ signOut, user }) => (
 
