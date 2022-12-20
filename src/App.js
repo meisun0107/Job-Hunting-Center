@@ -21,7 +21,7 @@ function App() {
 
   return (
     <Authenticator signUpAttributes={[
-      'name',
+      'Username',
     ]}>
 
       {({ signOut, user }) => (
