@@ -37,7 +37,7 @@ function UserProfile() {
   const uploadResume = (event) => {
     event.preventDefault(); // prevent the form from submitting
 
-    console.log(file.name);
+    console.log(file.type);
     const config = {
       headers: {
         'content-type': 'multipart/form-data',
@@ -53,9 +53,30 @@ function UserProfile() {
 		};
 
     const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/v1/resumeUpload/resume-of-jrc-cloud-computing/" + file.name;
-    axios.put(url, file, additionalParams).then((response) => {
+    /*axios.put(url, file, additionalParams).then((response) => {
       console.log(response.data);
-    });
+    });*/
+
+fetch(url, {
+  method: 'PUT',
+  mode: 'cors',
+  cache: 'no-cache',
+  credentials: 'same-origin',
+  headers: {
+    'Content-Type': file.type,
+    // other headers as needed
+  },
+  redirect: 'follow',
+  referrer: 'no-referrer',
+  body: file,
+})
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+  })
+  .catch(error => {
+    console.error(error)
+  })
   };
 
   const match = (e) => {
