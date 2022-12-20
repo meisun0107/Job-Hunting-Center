@@ -43,8 +43,8 @@ function UserProfile() {
         'content-type': 'multipart/form-data',
       },
     };
-    const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/resumeUpload/resume-of-jrc-cloud-computing/" + file.name;
-    axios.post(url, {"file": file}, config).then((response) => {
+    const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/v1/resumeUpload/resume-of-jrc-cloud-computing/" + file.name;
+    axios.put(url, {"file": file}, config).then((response) => {
       console.log(response.data);
     });
   };
