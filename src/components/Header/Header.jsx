@@ -4,7 +4,10 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import './Header.css';
 
-function Header() {
+function Header(props) {
+  const handleLogout = () => {
+    props.logOut();
+  } 
   return (
     <Navbar expand="lg">
       <Container className ="container">
@@ -14,7 +17,7 @@ function Header() {
           <Nav className="justify-content-end" style={{ width: "100%" }}>
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/discover">Discover</Nav.Link>
-            <Nav.Link href="/login">Login</Nav.Link>
+            <Nav.Link onClick = {handleLogout}>Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

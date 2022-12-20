@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-jobhuntingcenter-dev-202950-authRole",
+      "UnauthRoleArn": "arn:aws:iam::322734140631:role/amplify-jobhuntingcenter-dev-202950-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::322734140631:role/amplify-jobhuntingcenter-dev-202950-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-jobhuntingcenter-dev-202950-deployment",
+      "UnauthRoleName": "amplify-jobhuntingcenter-dev-202950-unauthRole",
+      "StackName": "amplify-jobhuntingcenter-dev-202950",
+      "StackId": "arn:aws:cloudformation:us-east-1:322734140631:stack/amplify-jobhuntingcenter-dev-202950/cde1c2f0-8005-11ed-9c88-12484d2aa231",
+      "AmplifyAppId": "d3ggvqt96qft0"
+    },
+    "categories": {
+      "auth": {
+        "jobhuntingcentere2e27d9b": {}
+      }
+    }
+  }
+}

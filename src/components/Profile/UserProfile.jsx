@@ -13,14 +13,12 @@ import axios from "axios";
 function UserProfile() {
 
   const [file, setFile] = useState()
-
   function handleChange(event) {
     setFile(event.target.files[0])
   }
-
   const uploadResume = (event) => {
     event.preventDefault(); // prevent the form from submitting
-
+    
     console.log(file.name);
     const config = {
       headers: {
