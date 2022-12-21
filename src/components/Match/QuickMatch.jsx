@@ -6,6 +6,10 @@ import axios from "axios";
 import './Match.css';
 
 function QuickMatch() {
+  const applyJob = (event) => {
+    alert("This function is not available right now.")
+  };
+
   return (
     <Container fluid className="matchContainer">
       <Row >
@@ -20,11 +24,11 @@ function QuickMatch() {
       <tbody>
         <tr>
           <td>job 1</td>
-          <td><button>Apply</button></td>
+          <td><button onClick={applyJob}>Apply</button></td>
         </tr>
         <tr>
           <td>job 2</td>
-          <td><button>Apply</button></td>
+          <td><button onClick={applyJob}>Apply</button></td>
         </tr>
       </tbody>
     </Table>

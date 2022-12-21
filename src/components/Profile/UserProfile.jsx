@@ -108,8 +108,8 @@ function UserProfile() {
         </Form>
         <Row>
           <Col>
-            <Button onClick={match} value="quick" variant="primary" size="md" className="searchBtnsLeft">Quick Match</Button>
-            <Button onClick={match} value="exact" variant="primary" size="md" className="searchBtnsRight">Exact Match</Button>
+            <Button href="/quick-match" variant="primary" size="md" className="searchBtnsLeft">Quick Match</Button>
+            <Button href="/exact-match" value="exact" variant="primary" size="md" className="searchBtnsRight">Exact Match</Button>
           </Col>
         </Row>
         </Col>

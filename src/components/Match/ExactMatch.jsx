@@ -6,6 +6,10 @@ import axios from "axios";
 import './Match.css';
 
 function ExactMatch() {
+
+  const applyJob = (event) => {
+    alert("This function is not available right now.")
+  };
   return (
     <Container fluid className="matchContainer">
       <Row >
@@ -27,7 +31,7 @@ function ExactMatch() {
         <tr>
           <td>job 2</td>
           <td>90%</td>
-          <td><button>Apply</button></td>
+          <td><button onClick={applyJob}>Apply</button></td>
         </tr>
       </tbody>
     </Table>

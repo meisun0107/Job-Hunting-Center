@@ -14,7 +14,7 @@ import { Auth } from "aws-amplify";
 
 function CompanyProfile() {
   const [user, setUser] = useState(null);
-
+  const [job, setJob] = useState(null);
   useEffect(() => {
     async function fetchUser() {
       try {
@@ -32,7 +32,24 @@ function CompanyProfile() {
   if (!user) {
     return <div>Loading...</div>;
   }
-  
+
+  var jobs = [];
+  const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/profile";
+  axios.get(url, {
+    params: {
+      email: user.attributes.email
+    }
+  }).then((response) => {
+    console.log(response.data);
+    for (let i = 0; i < response.data.jobs.length; i++) {
+      jobs.push(<tr>
+        <td>{i+1}</td>
+        <td>{response.data.jobs[i].positionid}</td>
+        <td>{response.data.jobs[i].position_description}</td>
+      </tr>)
+    }
+    setJob(jobs);
+  });
 
   function sendData(event) {
     event.preventDefault(); // prevent the form from submitting
@@ -104,17 +121,11 @@ function CompanyProfile() {
         <tr>
           <th>#</th>
           <th>Job Title</th>
+          <th>Job description</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>job 1</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>job 2</td>
-        </tr>
+      {job}
       </tbody>
     </Table>
       </Row>
