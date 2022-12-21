@@ -37,9 +37,7 @@ function UserProfile() {
   const uploadResume = (event) => {
     event.preventDefault(); // prevent the form from submitting
 
-    console.log(file.type);
-    const formData = new FormData();
-    formData.append('file', file);
+    console.log(file.type.split("/").pop());
     
     var additionalParams = {
 			headers: {
@@ -50,9 +48,13 @@ function UserProfile() {
 			},
 		};
 
-    const puturl = "https://794k191dy4.execute-api.us-east-1.amazonaws.com/v1/upload/resume-of-jrc-cloud-computing/" + file.name;
+    const puturl = "https://794k191dy4.execute-api.us-east-1.amazonaws.com/v1/upload/resume-of-jrc-cloud-computing/" + user.attributes.email + "." + file.type.split("/").pop();
     axios.put(puturl, file, additionalParams).then((response) => {
       console.log(response.data);
+      alert("You have uploaded your resume successfully! \n\n Feel free to try our matching services.");
+    }).catch((error) => {
+      console.log(error);
+      alert("Oops, something goes wrong. Please try to upload again.");
     });
   };
 

@@ -54,9 +54,11 @@ function CompanyProfile() {
     console.log(data.type)
     axios.post("https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/postposition", data, additionalParams).then((response) => {
         console.log(response);
+        alert("You have posted a new job!");
       })
       .catch((error) => {
         console.log(error);
+        alert("Oops, something goes wrong. Please try to post again.");
       });
   }
 
