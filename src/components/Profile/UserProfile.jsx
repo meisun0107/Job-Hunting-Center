@@ -41,42 +41,19 @@ function UserProfile() {
     const formData = new FormData();
     formData.append('file', file);
     
-    const config = {
-      headers: {
-        'content-type': 'multipart/form-data',
-      },
-    };
     var additionalParams = {
 			headers: {
-				"Content-Type": undefined,
+        "Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Headers": "*",
+				"Access-Control-Allow-Methods": "PUT",
+				"Content-Type": file.type,
 			},
 		};
 
-    const puturl = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/resumeUpload/resume-of-jrc-cloud-computing/" + user.attributes.email;
-    axios.put(puturl, formData, additionalParams).then((response) => {
+    const puturl = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/resumeUpload/resume-of-jrc-cloud-computing/" + file.name;
+    axios.put(puturl, file, additionalParams).then((response) => {
       console.log(response.data);
     });
-/*
-fetch(url, {
-  method: 'PUT',
-  mode: 'cors',
-  cache: 'no-cache',
-  credentials: 'same-origin',
-  headers: {
-    'Content-Type': file.type,
-    // other headers as needed
-  },
-  redirect: 'follow',
-  referrer: 'no-referrer',
-  body: file,
-})
-  .then(response => response.json())
-  .then(data => {
-    console.log(data)
-  })
-  .catch(error => {
-    console.error(error)
-  })*/
   };
 
   const match = (e) => {
@@ -98,7 +75,7 @@ fetch(url, {
   const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/profile";
   axios.get(url, {
     params: {
-      email: "123test@gmail.com"
+      email: user.attributes.email
     }
   }).then((response) => {
     console.log(response.data);
@@ -133,7 +110,9 @@ fetch(url, {
         </Row>
         </Col>
       </Row>
-
+        <Row>
+          <img src={"https://resume-of-jrc-cloud-computing.s3.amazonaws.com/${file.name}"} alt="/"></img>
+        </Row>
       <Row >
       <h4 className="jobList">Applied Job List</h4>
       <Table striped className="jobTable">

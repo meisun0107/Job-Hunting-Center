@@ -17,6 +17,7 @@ function Header(props) {
           <Nav className="justify-content-end" style={{ width: "100%" }}>
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/discover">Discover</Nav.Link>
+            <Nav.Link href="/edit-info">Edit Profile</Nav.Link>
             <Nav.Link onClick = {handleLogout}>Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>

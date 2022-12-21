@@ -11,6 +11,7 @@ import CompanyProfile from "./components/Profile/CompanyProfile";
 import ExactMatch from "./components/Match/ExactMatch";
 import QuickMatch from "./components/Match/QuickMatch";
 import MarketAnalysis from "./components/MarketAnalysis/MarketAnalysis";
+import EditInfo from "./components/EditInfo/EditInfo";
 import { Routes, Route } from "react-router-dom";
 
 import { Authenticator, withAuthenticator, CheckboxField, TextField, useAuthenticator} from '@aws-amplify/ui-react';
@@ -41,6 +42,7 @@ function App() {
           <Route path="/exact-match" element={<ExactMatch />} />
           <Route path="/quick-match" element={<QuickMatch />} />
           <Route path="/market-analysis" element={<MarketAnalysis />} />
+          <Route path="/edit-info" element={<EditInfo />} />
         </Routes>
       <Footer />
 
