@@ -1,6 +1,6 @@
 {
   "auth": {
-    "jobhuntingcenter669d71cd": {
+    "jobhuntingcenteraaa966e7": {
       "service": "Cognito",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",

@@ -68,7 +68,7 @@ function CompanyProfile() {
         </Col>
         <Col sm={3}>
         <div className="info">
-        <p>Company: Job Hunting Center</p>
+        <p>Company: {user.attributes.preferred_username}</p>
         <p>Email: {user.attributes.email}</p>
         </div>
         </Col>
