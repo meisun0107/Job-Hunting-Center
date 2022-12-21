@@ -50,7 +50,7 @@ function UserProfile() {
 			},
 		};
 
-    const puturl = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/resumeUpload/resume-of-jrc-cloud-computing/" + file.name;
+    const puturl = "https://794k191dy4.execute-api.us-east-1.amazonaws.com/v1/upload/resume-of-jrc-cloud-computing/" + file.name;
     axios.put(puturl, file, additionalParams).then((response) => {
       console.log(response.data);
     });
