@@ -13,7 +13,12 @@
     },
     "categories": {
       "auth": {
-        "jobhuntingcentere2e27d9b": {}
+        "jobhuntingcenter669d71cd": {
+          "userPoolId": "us-east-1_OqmlPPmsL",
+          "userPoolName": "job-hunting-center-login-pool",
+          "webClientId": "121biir5vn6ko0r1tip340g4fh",
+          "nativeClientId": "121biir5vn6ko0r1tip340g4fh"
+        }
       }
     }
   }

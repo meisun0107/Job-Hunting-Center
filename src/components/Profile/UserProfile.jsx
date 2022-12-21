@@ -38,6 +38,9 @@ function UserProfile() {
     event.preventDefault(); // prevent the form from submitting
 
     console.log(file.type);
+    const formData = new FormData();
+    formData.append('file', file);
+    
     const config = {
       headers: {
         'content-type': 'multipart/form-data',
@@ -45,15 +48,12 @@ function UserProfile() {
     };
     var additionalParams = {
 			headers: {
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Headers": "*",
-				"Access-Control-Allow-Methods": "PUT",
-				"Content-Type": file.type,
+				"Content-Type": undefined,
 			},
 		};
 
     const puturl = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/resumeUpload/resume-of-jrc-cloud-computing/" + user.attributes.email;
-    axios.put(puturl, file, additionalParams).then((response) => {
+    axios.put(puturl, formData, additionalParams).then((response) => {
       console.log(response.data);
     });
 /*
@@ -112,7 +112,7 @@ fetch(url, {
         </Col>
         <Col sm={3}>
         <div className="info">
-        <p>Username: {user.username}</p>
+        <p>Username: {user.attributes.preferred_username}</p>
         <p>Email: {user.attributes.email}</p>
         </div>
         </Col>
