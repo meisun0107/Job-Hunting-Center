@@ -14,6 +14,7 @@ import { Auth } from 'aws-amplify';
 
 function UserProfile() {
   const [user, setUser] = useState(null);
+  const [resume, setResume] = useState(null);
 
   useEffect(() => {
     async function fetchUser() {
@@ -48,9 +49,10 @@ function UserProfile() {
 			},
 		};
 
-    const puturl = "https://794k191dy4.execute-api.us-east-1.amazonaws.com/v1/upload/resume-of-jrc-cloud-computing/" + user.attributes.email + "." + file.type.split("/").pop();
+    const puturl = "https://794k191dy4.execute-api.us-east-1.amazonaws.com/v1/upload/resume-of-jrc-cloud-computing/" + user.attributes.email;
     axios.put(puturl, file, additionalParams).then((response) => {
       console.log(response.data);
+      setResume("https://resume-of-jrc-cloud-computing.s3.amazonaws.com/" + user.attributes.email)
       alert("You have uploaded your resume successfully! \n\n Feel free to try our matching services.");
     }).catch((error) => {
       console.log(error);
@@ -112,9 +114,17 @@ function UserProfile() {
         </Row>
         </Col>
       </Row>
+      {
+        resume ?
         <Row>
-          <img src={"https://resume-of-jrc-cloud-computing.s3.amazonaws.com/${file.name}"} alt="/"></img>
-        </Row>
+        <Col className="resumePic">
+          <img src={resume} alt="/" className="resume"></img>
+          </Col>
+        </Row> : null
+
+      }
+     
+      {/** 
       <Row >
       <h4 className="jobList">Applied Job List</h4>
       <Table striped className="jobTable">
@@ -135,7 +145,8 @@ function UserProfile() {
         </tr>
       </tbody>
     </Table>
-      </Row>
+      </Row>*/}
+
     </Container>
   );
 };
