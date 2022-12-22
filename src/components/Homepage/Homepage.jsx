@@ -17,15 +17,15 @@ function Homepage() {
       try {
         const user = await Auth.currentAuthenticatedUser();
         setUser(user);
-        const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/profile";
-        axios.get(url, {
-          params: {
-            email: user.attributes.email,
-          }
-        }).then((response) => {
-          setTag(response.data.user_tag);
-          console.log(response.data);
-        });
+          const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/profile";
+  axios.get(url, {
+    params: {
+      email: user.attributes.email,
+    }
+  }).then((response) => {
+    setTag(response.data.user_tag[0]);
+    console.log(response.data);
+  });
       } catch (error) {
         console.log(error);
       }
@@ -52,13 +52,11 @@ function Homepage() {
           <h1>We can help you!</h1>
           <h1>Find your matching job!</h1>
         <h5>Here is where the dream start</h5>
-        <Button href="/company-profile" variant="primary" size="lg">
+        {tag === "company" ? <Button href="/company-profile" variant="primary" size="lg">
         Post a job as a company!
-      </Button> 
-      <p></p>
-       <Button href="/user-profile" variant="primary" size="lg">
+      </Button> : <Button href="/user-profile" variant="primary" size="lg">
         View my profile and start matching!
-      </Button>
+      </Button>}
         </div>
         </Col>
       </Row>
