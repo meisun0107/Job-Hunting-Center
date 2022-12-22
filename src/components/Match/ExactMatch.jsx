@@ -28,15 +28,24 @@ function ExactMatch() {
     return <div>Loading...</div>;
   }
 
-  console.log(user)
-
-  const url = "PATH-TO-EXACT-MATCH";
+  var jobs = [];
+  const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/v1/match";
   axios.get(url, {
     params: {
-      email: user.attributes.email
-    }
+      matchemail: user.attributes.email
+  }
   }).then((response) => {
     console.log(response.data);
+    for (let i = 0; i < response.data.length; i++) {
+      jobs.push(<tr>
+        <td>{response.data[i].order}</td>
+        <td>{response.data[i].positionid}</td>
+        <td>{response.data[i].job_description}</td>
+        <td>{response.data[i].company_email}</td>
+        <td><button onClick={applyJob}>Apply</button></td>
+      </tr>)
+    }
+    setJob(jobs);
   });
 
   const applyJob = (event) => {
@@ -49,22 +58,15 @@ function ExactMatch() {
       <Table striped className="jobTable">
       <thead>
         <tr>
-          <th>Posted Job List</th>
-          <th>Match Percent</th>
-          <th>Click here to apply</th>
+          <th>#</th>
+          <th>Job Title</th>
+          <th>Job Description</th>
+          <th>Company Email</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>job 1</td>
-          <td>97%</td>
-          <td><button onClick={applyJob}>Apply</button></td>
-        </tr>
-        <tr>
-          <td>job 2</td>
-          <td>90%</td>
-          <td><button onClick={applyJob}>Apply</button></td>
-        </tr>
+          {job}
       </tbody>
     </Table>
       </Row>

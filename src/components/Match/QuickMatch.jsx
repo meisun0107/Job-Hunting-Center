@@ -27,13 +27,24 @@ function QuickMatch() {
     return <div>Loading...</div>;
   }
 
-  const url = "PATH-TO-QUICK-MATCH";
+  var jobs = [];
+  const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/v1/match";
   axios.get(url, {
     params: {
-      email: user.attributes.email
+      matchemail: user.attributes.email
     }
   }).then((response) => {
     console.log(response.data);
+    /*
+    for (let i = 0; i < response.data.jobs.length; i++) {
+      jobs.push(<tr>
+        <td>{response.data[i].positionid}</td>
+        <td>{response.data[i].position_description}</td>
+        <td>{response.data[i].company_email}</td>
+        <td><button onClick={applyJob}>Apply</button></td>
+      </tr>)
+    }
+    setJob(jobs);*/
   });
 
   const applyJob = (event) => {
@@ -43,21 +54,21 @@ function QuickMatch() {
   return (
     <Container fluid className="matchContainer">
       <Row >
-      <h4 className="jobs">Cluster Match Percent: 83%</h4>
+      <h4 className="jobs">Quick Match Result</h4>
       <Table striped className="jobTable">
       <thead>
         <tr>
           <th>Jobs in this cluster</th>
+          <th>Job Description</th>
+          <th>Company Email</th>
           <th>Click here to apply</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>job 1</td>
-          <td><button onClick={applyJob}>Apply</button></td>
-        </tr>
-        <tr>
-          <td>job 2</td>
+          <td>job 1 description</td>
+          <td>123test@gmail.com</td>
           <td><button onClick={applyJob}>Apply</button></td>
         </tr>
       </tbody>
