@@ -13,6 +13,7 @@ import './EditInfo.css';
 
 function EditInfo() {
   const [user, setUser] = useState(null);
+  const [mytag, setTag] = useState(null);
 
   useEffect(() => {
     async function fetchUser() {
@@ -31,52 +32,53 @@ function EditInfo() {
   if (!user) {
     return <div>Loading...</div>;
   }
+  const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/profile";
+  axios.get(url, {
+    params: {
+      email: user.attributes.email
+    }
+  }).then((response) => {
+    setTag(response.data.user_tag);
+    console.log(mytag)
+  });
   
 
   function sendData(event) {
     event.preventDefault(); // prevent the form from submitting
-    const title = event.target.elements.formHorizontalTitle.value;
-    const description = event.target.elements.formHorizontalDescription.value;
-    const data = {"email":"123test@gmail.com", "position_name": title, "position_description": description};
+    const username = event.target.elements.formHorizontalTitle.value;
+    const tag = event.target.elements.formHorizontalTag.value;
+    const data = {"email": user.attributes.email, "position_name": username, "user_tag": tag};
 
     var additionalParams = {
 			headers: {
 				"Content-Type": "multipart/form-data",
 			}, 
       params: {
-        email:user.attributes.email, 
-        position_name: title, 
-        position_description: description
+        email: user.attributes.email, 
+        username: username,
+        user_tag: tag,
       }
 		};
 
     const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/profile";
-    axios.post(url, {
-      params: {
-        email: user.attributes.email
-      }
-    }).then((response) => {
+    axios.post(url, data, additionalParams).then((response) => {
       console.log(response.data);
     });
+  }
 
   return (
-    <Container fluid >
+    <Container>
       <Row>
         <Col className="editContainer">
         <Form action="" method="POST" onSubmit={sendData}>
       <Form.Group as={Row} className="mb-3" controlId="formHorizontalTitle">
         <Col sm={10}>
-          <Form.Control type="text" placeholder="Username" defaultValue={user.attributes.preferred_username}/>
+          <Form.Control type="text" placeholder="Username / Company Name" defaultValue={user.attributes.preferred_username}/>
         </Col>
       </Form.Group>
-      <Form.Group as={Row} className="mb-3" controlId="formHorizontalTitle">
+      <Form.Group as={Row} className="mb-3" controlId="formHorizontalTag" >
         <Col sm={10}>
-          <Form.Control type="text" placeholder="Company"/>
-        </Col>
-      </Form.Group>
-      <Form.Group as={Row} className="mb-3" controlId="formHorizontalTitle">
-        <Col sm={10}>
-          <Form.Control type="text" placeholder="are you a company or an user? (please only type company or user)"/>
+          <Form.Control type="text" placeholder="are you a company or an user? (please only type company or user)" defaultValue={mytag}/>
         </Col>
       </Form.Group>
 
@@ -91,5 +93,5 @@ function EditInfo() {
     </Container>
   );
 };
-}
+
 export default EditInfo;
