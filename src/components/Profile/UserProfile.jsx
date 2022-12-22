@@ -25,8 +25,17 @@ function UserProfile() {
         console.log(error);
       }
     }
-
     fetchUser();
+    /*
+    async function fetchResume() {
+      try {
+        const response = await axios.head("https://resume-of-jrc-cloud-computing.s3.amazonaws.com/" + user.attributes.email);
+        setResume("https://resume-of-jrc-cloud-computing.s3.amazonaws.com/" + user.attributes.email);
+      } catch(error) {
+        console.log(error);
+      }
+    }
+    fetchResume();*/
   }, []);
 
   console.log(user)
@@ -60,22 +69,11 @@ function UserProfile() {
     });
   };
 
-  const match = (e) => {
-    e.preventDefault();
-    console.log(e.target.value); //exact or quick
-
-    axios
-    .post("API-GATEWAY-PATH", {"matchType": e.target.value})
-    .then((res) => {
-      alert("match Success");
-    })
-    .catch((err) => alert("match Error"));
-  }
-
   if (!user) {
     return <div>Loading...</div>;
   }
 
+  /*
   const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/profile";
   axios.get(url, {
     params: {
@@ -83,8 +81,8 @@ function UserProfile() {
     }
   }).then((response) => {
     console.log(response.data);
-  });
-
+  });*/
+  
   return (
     <Container fluid className="userContainer">
       <Row>

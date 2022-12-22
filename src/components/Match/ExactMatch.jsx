@@ -1,11 +1,43 @@
-import React, { useState, Component }from "react";
+import React, { useState, useEffect}from "react";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Table from 'react-bootstrap/Table';
 import axios from "axios";
 import './Match.css';
 
+import { Auth } from 'aws-amplify';
+
 function ExactMatch() {
+  const [user, setUser] = useState(null);
+  const [job, setJob] = useState(null);
+
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        const user = await Auth.currentAuthenticatedUser();
+        setUser(user);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchUser();
+  }, []);
+
+  if (!user) {
+    return <div>Loading...</div>;
+  }
+
+  console.log(user)
+
+  const url = "PATH-TO-EXACT-MATCH";
+  axios.get(url, {
+    params: {
+      email: user.attributes.email
+    }
+  }).then((response) => {
+    console.log(response.data);
+  });
 
   const applyJob = (event) => {
     alert("This function is not available right now.")
@@ -26,7 +58,7 @@ function ExactMatch() {
         <tr>
           <td>job 1</td>
           <td>97%</td>
-          <td><button>Apply</button></td>
+          <td><button onClick={applyJob}>Apply</button></td>
         </tr>
         <tr>
           <td>job 2</td>
