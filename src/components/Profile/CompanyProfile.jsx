@@ -15,6 +15,7 @@ import { Auth } from "aws-amplify";
 function CompanyProfile() {
   const [user, setUser] = useState(null);
   const [job, setJob] = useState(null);
+  const [username, setUsername] = useState(null);
   useEffect(() => {
     async function fetchUser() {
       try {
@@ -41,6 +42,7 @@ function CompanyProfile() {
     }
   }).then((response) => {
     console.log(response.data);
+    setUsername(response.data.username)
     for (let i = 0; i < response.data.jobs.length; i++) {
       jobs.push(<tr>
         <td>{i+1}</td>
@@ -87,7 +89,7 @@ function CompanyProfile() {
         </Col>
         <Col sm={3}>
         <div className="info">
-        <p>Company: {user.attributes.preferred_username}</p>
+        <p>Company: {username}</p>
         <p>Email: {user.attributes.email}</p>
         </div>
         </Col>
