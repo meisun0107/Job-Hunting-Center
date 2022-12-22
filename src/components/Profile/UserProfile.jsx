@@ -15,6 +15,7 @@ import { Auth } from 'aws-amplify';
 function UserProfile() {
   const [user, setUser] = useState(null);
   const [resume, setResume] = useState(null);
+  const [username, setUsername] = useState(null);
 
   useEffect(() => {
     async function fetchUser() {
@@ -75,7 +76,7 @@ function UserProfile() {
     return <div>Loading...</div>;
   }
 
-  /*
+  
   const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/profile";
   axios.get(url, {
     params: {
@@ -83,7 +84,8 @@ function UserProfile() {
     }
   }).then((response) => {
     console.log(response.data);
-  });*/
+    setUsername(response.data.username);
+  });
   
   return (
     <Container fluid className="userContainer">
@@ -93,7 +95,7 @@ function UserProfile() {
         </Col>
         <Col sm={3}>
         <div className="info">
-        <p>Username: {user.attributes.preferred_username}</p>
+        <p>Username: {username}</p>
         <p>Email: {user.attributes.email}</p>
         </div>
         </Col>
