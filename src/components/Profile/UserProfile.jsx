@@ -107,10 +107,12 @@ function UserProfile() {
       </Button>
         </Form>
         <Row>
+        {
+        resume ?
           <Col>
             <Button href="/quick-match" variant="primary" size="md" className="searchBtnsLeft">Quick Match</Button>
             <Button href="/exact-match" value="exact" variant="primary" size="md" className="searchBtnsRight">Exact Match</Button>
-          </Col>
+          </Col> : null}
         </Row>
         </Col>
       </Row>
