@@ -29,7 +29,7 @@ function UserProfile() {
     fetchUser();
   }, []);
 
-  /*
+  
   async function fetchResume() {
     try {
       const response = await axios.head("https://resume-of-jrc-cloud-computing.s3.amazonaws.com/" + user.attributes.email);
@@ -39,7 +39,7 @@ function UserProfile() {
       console.log(error);
     }
   }
-  fetchResume();*/
+  fetchResume();
 
   console.log(user)
 
@@ -66,7 +66,7 @@ function UserProfile() {
       console.log(response.data);
       setResume("https://resume-of-jrc-cloud-computing.s3.amazonaws.com/" + user.attributes.email)
       alert("You have uploaded your resume successfully! \n\n Feel free to try our matching services.");
-      //window.location.reload();
+      window.location.reload();
     }).catch((error) => {
       console.log(error);
       alert("Oops, something goes wrong. Please try to upload again.");
