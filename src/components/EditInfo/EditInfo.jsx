@@ -14,6 +14,7 @@ import './EditInfo.css';
 function EditInfo() {
   const [user, setUser] = useState(null);
   const [mytag, setTag] = useState(null);
+  const [username, setUsername] = useState(null);
 
   useEffect(() => {
     async function fetchUser() {
@@ -39,7 +40,8 @@ function EditInfo() {
     }
   }).then((response) => {
     setTag(response.data.user_tag);
-    console.log(mytag)
+    setUsername(response.data.username);
+    console.log(mytag);
   });
   
 
@@ -63,6 +65,7 @@ function EditInfo() {
     const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/profile";
     axios.post(url, data, additionalParams).then((response) => {
       console.log(response.data);
+      alert("you have successfully updated your profile!");
     });
   }
 
@@ -73,7 +76,7 @@ function EditInfo() {
         <Form action="" method="POST" onSubmit={sendData}>
       <Form.Group as={Row} className="mb-3" controlId="formHorizontalTitle">
         <Col sm={10}>
-          <Form.Control type="text" placeholder="Username / Company Name" defaultValue={user.attributes.preferred_username}/>
+          <Form.Control type="text" placeholder="Username / Company Name" defaultValue={username}/>
         </Col>
       </Form.Group>
       <Form.Group as={Row} className="mb-3" controlId="formHorizontalTag" >
