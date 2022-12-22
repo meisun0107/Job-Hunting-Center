@@ -29,7 +29,7 @@ function CompanyProfile() {
     fetchUser();
   }, []);
 
-  console.log(user);
+ // console.log(user);
   if (!user) {
     return <div>Loading...</div>;
   }
@@ -41,9 +41,9 @@ function CompanyProfile() {
       email: user.attributes.email
     }
   }).then((response) => {
-    console.log(response.data);
     setUsername(response.data.username)
     for (let i = 0; i < response.data.jobs.length; i++) {
+      console.log(response.data.jobs[i].positionid);
       jobs.push(<tr>
         <td>{i+1}</td>
         <td>{response.data.jobs[i].positionid}</td>
