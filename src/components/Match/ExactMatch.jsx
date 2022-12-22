@@ -10,6 +10,7 @@ import { Auth } from 'aws-amplify';
 function ExactMatch() {
   const [user, setUser] = useState(null);
   const [job, setJob] = useState(null);
+  var jobs = [];
 
   useEffect(() => {
     async function fetchUser() {
@@ -20,7 +21,6 @@ function ExactMatch() {
         console.log(error);
       }
     }
-
     fetchUser();
   }, []);
 
@@ -28,25 +28,26 @@ function ExactMatch() {
     return <div>Loading...</div>;
   }
 
-  var jobs = [];
   const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/v1/match";
   axios.get(url, {
-    params: {
-      matchemail: user.attributes.email
-  }
-  }).then((response) => {
-    console.log(response.data);
-    for (let i = 0; i < response.data.length; i++) {
-      jobs.push(<tr>
-        <td>{response.data[i].order}</td>
-        <td>{response.data[i].positionid}</td>
-        <td>{response.data[i].job_description}</td>
-        <td>{response.data[i].company_email}</td>
-        <td><button onClick={applyJob}>Apply</button></td>
-      </tr>)
-    }
-    setJob(jobs);
-  });
+          params: {
+            matchemail: user.attributes.email
+        }
+        }).then((response) => {
+          console.log(response.data);
+          for (let i = 0; i < response.data.length; i++) {
+            jobs.push(<tr>
+              <td>{response.data[i].order}</td>
+              <td>{response.data[i].positionid}</td>
+              <td>{response.data[i].job_description}</td>
+              <td>{response.data[i].company_email}</td>
+              <td><button onClick={applyJob}>Apply</button></td>
+            </tr>)
+          }
+          setJob(jobs);
+      });
+
+ 
 
   const applyJob = (event) => {
     alert("This function is not available right now.")

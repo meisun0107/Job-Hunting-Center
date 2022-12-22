@@ -21,6 +21,16 @@ function EditInfo() {
       try {
         const user = await Auth.currentAuthenticatedUser();
         setUser(user);
+        const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/profile";
+        axios.get(url, {
+          params: {
+            email: user.attributes.email
+          }
+        }).then((response) => {
+          setTag(response.data.user_tag);
+          setUsername(response.data.username);
+          console.log(mytag);
+        });
       } catch (error) {
         console.log(error);
       }
@@ -29,20 +39,10 @@ function EditInfo() {
     fetchUser();
   }, []);
 
-  console.log(user);
   if (!user) {
     return <div>Loading...</div>;
   }
-  const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/profile";
-  axios.get(url, {
-    params: {
-      email: user.attributes.email
-    }
-  }).then((response) => {
-    setTag(response.data.user_tag);
-    setUsername(response.data.username);
-    console.log(mytag);
-  });
+
   
 
   function sendData(event) {

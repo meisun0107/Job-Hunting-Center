@@ -22,6 +22,18 @@ function UserProfile() {
       try {
         const user = await Auth.currentAuthenticatedUser();
         setUser(user);
+        const response = await axios.head("https://resume-of-jrc-cloud-computing.s3.amazonaws.com/" + user.attributes.email);
+      setResume("https://resume-of-jrc-cloud-computing.s3.amazonaws.com/" + user.attributes.email);
+      console.log("success");
+      const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/profile";
+      axios.get(url, {
+        params: {
+          email: user.attributes.email
+        }
+      }).then((response) => {
+        console.log(response.data);
+        setUsername(response.data.username);
+      });
       } catch (error) {
         console.log(error);
       }
@@ -29,7 +41,7 @@ function UserProfile() {
     fetchUser();
   }, []);
 
-  
+  /*
   async function fetchResume() {
     try {
       const response = await axios.head("https://resume-of-jrc-cloud-computing.s3.amazonaws.com/" + user.attributes.email);
@@ -39,9 +51,9 @@ function UserProfile() {
       console.log(error);
     }
   }
-  fetchResume();
+  fetchResume();*/
 
-  console.log(user)
+  //console.log(user)
 
   const [file, setFile] = useState()
   function handleChange(event) {
@@ -77,7 +89,7 @@ function UserProfile() {
     return <div>Loading...</div>;
   }
 
-  
+  /*
   const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/profile";
   axios.get(url, {
     params: {
@@ -86,7 +98,7 @@ function UserProfile() {
   }).then((response) => {
     console.log(response.data);
     setUsername(response.data.username);
-  });
+  });*/
   
   return (
     <Container fluid className="userContainer">
