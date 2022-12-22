@@ -22,7 +22,7 @@ function UserProfile() {
       try {
         const user = await Auth.currentAuthenticatedUser();
         setUser(user);
-        const response = await axios.head("https://resume-of-jrc-cloud-computing.s3.amazonaws.com/" + user.attributes.email);
+        const response = axios.head("https://resume-of-jrc-cloud-computing.s3.amazonaws.com/" + user.attributes.email);
       setResume("https://resume-of-jrc-cloud-computing.s3.amazonaws.com/" + user.attributes.email);
       console.log("success");
       const url = "https://xs4bmp3o2l.execute-api.us-east-1.amazonaws.com/jugotest/profile";
@@ -61,7 +61,6 @@ function UserProfile() {
   }
   const uploadResume = (event) => {
     event.preventDefault(); // prevent the form from submitting
-
     console.log(file.type.split("/").pop());
     
     var additionalParams = {
@@ -79,6 +78,7 @@ function UserProfile() {
       setResume("https://resume-of-jrc-cloud-computing.s3.amazonaws.com/" + user.attributes.email)
       alert("You have uploaded your resume successfully! \n\n Feel free to try our matching services.");
       window.location.reload();
+      //window.location.reload();
     }).catch((error) => {
       console.log(error);
       alert("Oops, something goes wrong. Please try to upload again.");
@@ -135,7 +135,7 @@ function UserProfile() {
         resume ?
         <Row>
         <Col className="resumePic">
-          <img src={resume} alt="/" className="resume"></img>
+          <img src={resume} alt="Please Upload Your Resume" className="resume"></img>
           </Col>
         </Row> : null
 
